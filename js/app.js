@@ -41,8 +41,6 @@ $(document).ready(function() {
 		});
 	};
 
-	var woeId = 2347559;
-
 	var FlickrSearchUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json";
 
 	var getOutdoorImages = function(woeId) {
@@ -61,7 +59,13 @@ $(document).ready(function() {
 			dataType: "jsonp",
 			type: "GET",
 		})
+		.done(function(data){
+			//Woe = Where on earth (via Flickr)
+			console.log(data);
+
+		});
 	};
+	getOutdoorImages();
 
 
 });
