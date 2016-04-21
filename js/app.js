@@ -8,51 +8,61 @@
 - also add photographer's name, the date the image was taken, and a link to the Flickr page- style it 
 - add buttons to sort by X attribute */
 
-var query = "california";
 
-var apiKey = '617d443e314d492176c1b9f46580dfcd';
+$(document).ready(function() {
+	$('.imageSearchBox').submit(function(e){
+		e.preventDefault();
+		fetchFlickrObject();
+	});
 
-var url = "https://api.flickr.com/services/rest/?method=flickr.places.find&api_key=617d443e314d492176c1b9f46580dfcd&query=seattle&format=json";
+	var apiKey = '617d443e314d492176c1b9f46580dfcd';
 
-
-var fetchFlickrObject = function() {
-	// var request = {
-	// 	api_key: apiKey,
-	// 	query: location
-	// };
-	
-	$.ajax({
-		url: url + '&jsoncallback=?',
-		// data: request,
-		dataType: "jsonp",
-		type: "GET"
-	})
-	.done(function(data){
-		woeId = data.places.place[0];
-		console.log(woeId);
-
-	})
-};
-
-fetchFlickrObject()
-
-//Woe = Where on earth (via Flickr)
+	var flickrPlaceUrl = "https://api.flickr.com/services/rest/?method=flickr.places.find&jsoncallback=?";
 
 
+	var fetchFlickrObject = function() {
+		var request = {
+			api_key: apiKey,
+			query: $('.userLocationInput').val()
+		};
+		
+		$.ajax({
+			url: flickrPlaceUrl,
+			data: request,
+			dataType: 'jsonp',
+			type: 'GET',
+		})
+		.done(function(data){
+			//Woe = Where on earth (via Flickr)
+			console.log(data);
+			var woeId = data.places.place[0];
+			console.log(woeId);
 
-// var getOutdoorImages = function(tag) {
-// 	var request = {
-// 		woe_id: getWoeId,
-// 		geo_context: 2,
-// 		content_type: 1,
-// 		api_key: apiKey,
-// 		sort: 'interestingness-desc',
-	
-// 	};
-	
-// 	$.ajax({
-// 		url: url,
-// 		data: request,
-// 		dataType: "jsonp",
-// 		type: "GET",
-// 	})
+		});
+	};
+
+	var woeId = 2347559;
+
+	var FlickrSearchUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json";
+
+	var getOutdoorImages = function(woeId) {
+		var request = {
+			woe_id: woeId,
+			geo_context: 2,
+			content_type: 1,
+			api_key: apiKey,
+			sort: 'interestingness-desc',
+		
+		};
+		
+		$.ajax({
+			url: FlickrSearchUrl + '&jsoncallback=?',
+			data: request,
+			dataType: "jsonp",
+			type: "GET",
+		})
+	};
+
+
+});
+
