@@ -4,7 +4,7 @@
 - use woeID in Flickr search API to fetch images based on user input 
 - extract the image data from the object- append to HTML 
 - figure out how to do it again
-- also add photographer's name, the date the image was taken, and a link to the Flickr page- style it 
+- style it 
 - add buttons to sort by X attribute */
 
 
@@ -48,8 +48,8 @@ $(document).ready(function() {
 	var getOutdoorImages = function(woeId) {
 		var request = {
 			woe_id: woeId,
-			geo_context: 2,
-			content_type: 1,
+			//geo_context: 2,
+			//content_type: 1,
 			api_key: apiKey,
 			sort: 'interestingness-desc',
 		
@@ -75,11 +75,11 @@ $(document).ready(function() {
 		        var secretId = data.photos.photo[i].secret;
 		        console.log("secretId: " + secretId);
 
+		        $('.imageDisplay').append("<div class='imageResult'><a href='http://flickr.com/photo.gne?id=" + photoId + "'><img src='https://farm" + farmId + ".static.flickr.com/" + serverId + "/" + photoId + "_" + secretId + "_m.jpg'><a></div>");
+
 	        }
 		});
 	};
-	getOutdoorImages();
-
 
 });
 
