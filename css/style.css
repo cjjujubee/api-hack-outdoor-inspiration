@@ -14,7 +14,7 @@ body {
 	text-align: center;
 	margin: 0 auto;
 	border-radius: 40px;
-	font-weight: lighter;
+	margin-bottom: 2em;
 }
 
 input {
@@ -23,17 +23,13 @@ input {
 	margin-top: 2em;
 }
 
-/*.searchInstructions {
-	padding: 1em;
-
-}*/
-
 .imageDisplay {
 	margin-left: 8em;
 	margin-right: 8em;
 	margin-top: 2em;
-	border: solid 2px black;
 	text-align: center;
+	display: block;
+	font-size:0;
 
 }
 
@@ -99,6 +95,12 @@ button:active {
 p:hover {
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+/* Adds border around images */
+
+img {
+	border: 2px solid #3948ab;
 }
 
 
