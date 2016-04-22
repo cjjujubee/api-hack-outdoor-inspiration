@@ -4,7 +4,7 @@
 - use woeID in Flickr search API to fetch images based on user input 
 - extract the image data from the object- append to HTML 
 - figure out how to do it again
-- style it 
+- style it (e.g. layout, typography, color scheme, engaging core features)
 - add buttons to sort by X attribute */
 
 
@@ -75,7 +75,7 @@ $(document).ready(function() {
 		        var secretId = data.photos.photo[i].secret;
 
 		        //appends image to HTML with thumbnail of image and link to the appropropriate Flickr account
-		        $('.imageDisplay').append("<div class='imageResult'><a href='http://flickr.com/photo.gne?id=" + photoId + "'><img src='https://farm" + farmId + ".static.flickr.com/" + serverId + "/" + photoId + "_" + secretId + "_m.jpg'><a></div>");
+		        $('.imageDisplay').append("<div class='imageResult'><a href='http://flickr.com/photo.gne?id=" + photoId + "'><img src='https://farm" + farmId + ".static.flickr.com/" + serverId + "/" + photoId + "_" + secretId + "_q.jpg'><a></div>");
 
 	        }
 		});

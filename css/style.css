@@ -22,4 +22,18 @@ input {
 
 .searchInstructions {
 	padding: 1em;
+
+}
+
+.imageDisplay {
+	margin-left: 8em;
+	margin-right: 8em;
+	margin-top: 2em;
+	border: solid 2px black;
+	text-align: center;
+
+}
+
+.imageResult {
+	display: inline-block;
 }
