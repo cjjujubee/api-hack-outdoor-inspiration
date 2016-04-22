@@ -33,11 +33,10 @@ $(document).ready(function() {
 	    }).done(function(data) {
 	        var woeId = data.places.place[0].woeid;
 	        console.log(woeId);
+	        console.log(data.places.place[0]);
 	        
 	       	//retrieves images based on woeID extracted from fetchFlickrObject
 	        getOutdoorImages(woeId); 
-
-	        //pulls out relevant data to create image URL 
 
 	    });
 	};
@@ -67,14 +66,11 @@ $(document).ready(function() {
 
 	        for(var i=0; i < data.photos.photo.length; i++) {
 	        	var farmId = data.photos.photo[i].farm;
-		        console.log("farmId: " + farmId);
 		        var serverId = data.photos.photo[i].server;
-		        console.log("serverId: " + serverId);
 		        var photoId = data.photos.photo[i].id;
-		        console.log("photoId: " + photoId);
 		        var secretId = data.photos.photo[i].secret;
-		        console.log("secretId: " + secretId);
 
+		        //appends image to HTML with thumbnail of image and link to the appropropriate Flickr account
 		        $('.imageDisplay').append("<div class='imageResult'><a href='http://flickr.com/photo.gne?id=" + photoId + "'><img src='https://farm" + farmId + ".static.flickr.com/" + serverId + "/" + photoId + "_" + secretId + "_m.jpg'><a></div>");
 
 	        }
