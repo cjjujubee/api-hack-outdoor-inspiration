@@ -11,7 +11,9 @@
 $(document).ready(function() {
 	$('.imageSearchBox').submit(function(e){
 		e.preventDefault();
+		$('.imageDisplay').html("");
 		fetchFlickrObject();
+		$('form')[0].reset();
 	});
 
 	var apiKey = '617d443e314d492176c1b9f46580dfcd';
@@ -48,9 +50,11 @@ $(document).ready(function() {
 		var request = {
 			woe_id: woeId,
 			//geo_context: 2,
-			//content_type: 1,
+			content_type: 1,
+			tags: 'nature, outdoors',
 			api_key: apiKey,
 			sort: 'interestingness-desc',
+			per_page: 20
 		
 		};
 		
