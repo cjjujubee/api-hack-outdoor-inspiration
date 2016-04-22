@@ -3,7 +3,6 @@
 - use Flickr place API to fetch the woeID in a json-p object
 - use woeID in Flickr search API to fetch images based on user input 
 - extract the image data from the object- append to HTML 
-- sort images by interestingness
 - figure out how to do it again
 - also add photographer's name, the date the image was taken, and a link to the Flickr page- style it 
 - add buttons to sort by X attribute */
@@ -16,6 +15,8 @@ $(document).ready(function() {
 	});
 
 	var apiKey = '617d443e314d492176c1b9f46580dfcd';
+
+	//extracts woeID
 
 	var fetchFlickrObject = function() {
 	    var url = 'https://api.flickr.com/services/rest/?method=flickr.places.find&jsoncallback=?';
@@ -32,11 +33,17 @@ $(document).ready(function() {
 	    }).done(function(data) {
 	        var woeId = data.places.place[0].woeid;
 	        console.log(woeId);
-	        getOutdoorImages(woeId);
+	        
+	       	//retrieves images based on woeID extracted from fetchFlickrObject
+	        getOutdoorImages(woeId); 
+
+	        //pulls out relevant data to create image URL 
+
 	    });
 	};
 
 	var FlickrSearchUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json";
+
 
 	var getOutdoorImages = function(woeId) {
 		var request = {
@@ -58,8 +65,20 @@ $(document).ready(function() {
 			//Woe = Where on earth (via Flickr)
 			console.log(data);
 
+	        for(var i=0; i < data.photos.photo.length; i++) {
+	        	var farmId = data.photos.photo[i].farm;
+		        console.log("farmId: " + farmId);
+		        var serverId = data.photos.photo[i].server;
+		        console.log("serverId: " + serverId);
+		        var photoId = data.photos.photo[i].id;
+		        console.log("photoId: " + photoId);
+		        var secretId = data.photos.photo[i].secret;
+		        console.log("secretId: " + secretId);
+
+	        }
 		});
 	};
+	getOutdoorImages();
 
 
 });
