@@ -16,6 +16,24 @@ $(document).ready(function() {
 		$('form')[0].reset();
 	});
 
+	$('.seattle').click(function(e){
+		e.preventDefault();
+		$('.imageDisplay').html("");
+		getOutdoorImages(2490383);
+	});
+	
+	$('.wyoming').click(function(e){
+		e.preventDefault();
+		$('.imageDisplay').html("");
+		getOutdoorImages(2347609);
+	});
+
+	$('.india').click(function(e){
+		e.preventDefault();
+		$('.imageDisplay').html("");
+		getOutdoorImages(23424848);
+	});
+
 	var apiKey = '617d443e314d492176c1b9f46580dfcd';
 
 	//extracts woeID
@@ -80,6 +98,6 @@ $(document).ready(function() {
 	        }
 		});
 	};
-
+	getOutdoorImages();
 });
 
