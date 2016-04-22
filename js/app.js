@@ -17,28 +17,23 @@ $(document).ready(function() {
 
 	var apiKey = '617d443e314d492176c1b9f46580dfcd';
 
-	var flickrPlaceUrl = "https://api.flickr.com/services/rest/?method=flickr.places.find&jsoncallback=?";
-
-
 	var fetchFlickrObject = function() {
-		var request = {
-			api_key: apiKey,
-			query: $('.userLocationInput').val()
-		};
-		
-		$.ajax({
-			url: flickrPlaceUrl,
-			data: request,
-			dataType: 'jsonp',
-			type: 'GET',
-		})
-		.done(function(data){
-			//Woe = Where on earth (via Flickr)
-			console.log(data);
-			var woeId = data.places.place[0];
-			console.log(woeId);
-
-		});
+	    var url = 'https://api.flickr.com/services/rest/?method=flickr.places.find&jsoncallback=?';
+	    var data = {
+	        api_key: '617d443e314d492176c1b9f46580dfcd',
+	        query: $('.userLocationInput').val(),
+	        format: "json"
+	      };
+	    
+	    $.ajax({
+	        dataType: "json",
+	        url: url,
+	        data: data
+	    }).done(function(data) {
+	        var woeId = data.places.place[0].woeid;
+	        console.log(woeId);
+	        getOutdoorImages(woeId);
+	    });
 	};
 
 	var FlickrSearchUrl = "https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json";
@@ -65,7 +60,6 @@ $(document).ready(function() {
 
 		});
 	};
-	getOutdoorImages();
 
 
 });
